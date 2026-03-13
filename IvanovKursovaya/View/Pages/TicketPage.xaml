@@ -1,0 +1,39 @@
+﻿<Page x:Class="IvanovKursovaya.View.Pages.TicketPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IvanovKursovaya.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TicketPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="InfoLV" Grid.Row="2" Grid.ColumnSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Время занятия" DisplayMemberBinding="{Binding DateTime}"/>
+                    <GridViewColumn Header="Название курса тренировок" DisplayMemberBinding="{Binding Training.Title}"/>
+                    <GridViewColumn Header="Имя клиента" DisplayMemberBinding="{Binding Client.Name}"/>
+                    <GridViewColumn Header="Номер телефона клиента" DisplayMemberBinding="{Binding Client.Phone}"/>
+                    <GridViewColumn Header="Имя инструктора" DisplayMemberBinding="{Binding DogHandler.Name}"/>
+                    <GridViewColumn Header="Номер инструктора" DisplayMemberBinding="{Binding DogHandler.Phone}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Click="ChangeBtn_Click" x:Name="ChangeBtn" Grid.Column="1" Content="Изменить"/>
+        <Button Click="AddBtn_Click" x:Name="AddBtn" Grid.Column="0" Content="Добавить"/>
+        <Button Click="DelBtn_Click" x:Name="DelBtn" Grid.Column="2" Content="Удалить"/>
+    </Grid>
+</Page>

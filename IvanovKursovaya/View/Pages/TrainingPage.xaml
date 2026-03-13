@@ -1,0 +1,36 @@
+﻿<Page x:Class="IvanovKursovaya.View.Pages.TrainingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IvanovKursovaya.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TrainingPage">
+    <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <TextBox x:Name="SearchTB"/>
+            <Button x:Name="SearchBtn" Click="SearchBtn_Click" Grid.Column="1" Content="Найти" Width="100" Height="30" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <Button x:Name="AddBtnTrainings" Click="AddBtnTrainings_Click" Grid.Column="0" Grid.Row="4" Content="Добавить" Width="150" Height="30" HorizontalAlignment="Center" />
+            <ListView x:Name="InfoLV" Grid.Row="2" Grid.ColumnSpan="3">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название курса тренировок" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Header="Описание курса тренировок" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Цена за занятие" DisplayMemberBinding="{Binding Price}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        <ComboBox Grid.Column="3" Name="CostFilter" SelectionChanged="CostFilter_SelectionChanged"/>
+    </Grid>
+</Page>

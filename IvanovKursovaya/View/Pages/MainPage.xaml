@@ -1,0 +1,26 @@
+﻿<Page x:Class="IvanovKursovaya.View.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IvanovKursovaya.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="qwe" x:Name="LoginTB" Margin="5,0,0,5"/>
+            <TextBlock Text="qwe" x:Name="EmailTB" Margin="5,0,0,5"/>
+            <TextBlock Text="qwe" x:Name="PhoneTB" Margin="5,0,0,5"/>
+            <TextBlock Text="qwe" x:Name="NameTB" Margin="5,0,0,5"/>
+            <TextBlock Text="qwe" x:Name="SurenameTB" Margin="5,0,0,5"/>
+            <TextBlock Text="qwe" x:Name="PatronymicTB" Margin="5,0,0,5"/>
+        </StackPanel>
+    </Grid>
+</Page>
