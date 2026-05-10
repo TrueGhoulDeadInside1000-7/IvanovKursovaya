@@ -20,34 +20,82 @@ namespace IvanovKursovaya.View.Windows
     /// </summary>
     public partial class AddWindow : Window
     {
+        private Training currentTraining;
+
         public AddWindow()
         {
             InitializeComponent();
         }
 
+        public AddWindow(Training training)
+        {
+            InitializeComponent();
+
+            currentTraining = training;
+
+            TitleTB.Text = training.Title;
+            DescriptionTB.Text = training.Description;
+            PriceTB.Text = training.Price.ToString();
+        }
+
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(TitleTB.Text) || string.IsNullOrEmpty(PriceTB.Text) || string.IsNullOrEmpty(DescriptionTB.Text))
+            if (string.IsNullOrEmpty(TitleTB.Text) ||
+                string.IsNullOrEmpty(PriceTB.Text) ||
+                string.IsNullOrEmpty(DescriptionTB.Text))
             {
-                MessageBox.Show("Введите данные", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Введите данные",
+                    "Информация",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
             else
             {
-                if (App.context.Training.FirstOrDefault(u=>u.Title == TitleTB.Text) != null) 
+                decimal price;
+
+                if (!decimal.TryParse(PriceTB.Text, out price))
                 {
-                    MessageBox.Show("Такое название уже существует");
-                }    
-                else 
+                    MessageBox.Show("Введите корректную цену");
+                    return;
+                }
+
+                // ДОБАВЛЕНИЕ
+                if (currentTraining == null)
                 {
-                    Training training = new Training() 
+                    if (App.context.Training.FirstOrDefault(u => u.Title == TitleTB.Text) != null)
                     {
-                        Title = TitleTB.Text,
-                        Description = DescriptionTB.Text,
-                        Price = Convert.ToDecimal(PriceTB.Text)
-                    };
-                    App.context.Training.Add(training);
+                        MessageBox.Show("Такое название уже существует");
+                    }
+                    else
+                    {
+                        Training training = new Training()
+                        {
+                            Title = TitleTB.Text,
+                            Description = DescriptionTB.Text,
+                            Price = price
+                        };
+
+                        App.context.Training.Add(training);
+                        App.context.SaveChanges();
+
+                        MessageBox.Show("Курс успешно добавлен");
+
+                        Close();
+                    }
+                }
+
+                // РЕДАКТИРОВАНИЕ
+                else
+                {
+                    currentTraining.Title = TitleTB.Text;
+                    currentTraining.Description = DescriptionTB.Text;
+                    currentTraining.Price = price;
+
                     App.context.SaveChanges();
-                    MessageBox.Show("Курс успешно добавлен");
+
+                    MessageBox.Show("Данные успешно изменены");
+
+                    Close();
                 }
             }
         }

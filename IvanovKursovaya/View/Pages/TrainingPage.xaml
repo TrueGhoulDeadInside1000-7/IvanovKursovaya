@@ -20,6 +20,30 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <TextBox x:Name="SearchTB"/>
+        <Button x:Name="EditBtnTrainings"
+        Click="EditBtnTrainings_Click"
+        Grid.Column="1"
+        Grid.Row="3"
+        Content="Изменить"
+        Width="150"
+        Height="30"
+        HorizontalAlignment="Center"/>
+        <Button x:Name="DeleteBtnTrainings"
+        Click="DeleteBtnTrainings_Click"
+        Grid.Column="2"
+        Grid.Row="3"
+        Content="Удалить"
+        Width="150"
+        Height="30"
+        HorizontalAlignment="Center"/>
+        <Button x:Name="BookBtn"
+        Click="BookBtn_Click"
+        Grid.Column="1"
+        Grid.Row="3"
+        Content="Записаться"
+        Width="150"
+        Height="30"
+        HorizontalAlignment="Center"/>
             <Button x:Name="SearchBtn" Click="SearchBtn_Click" Grid.Column="1" Content="Найти" Width="100" Height="30" HorizontalAlignment="Left" Margin="5,0,0,0"/>
             <Button x:Name="AddBtnTrainings" Click="AddBtnTrainings_Click" Grid.Column="0" Grid.Row="4" Content="Добавить" Width="150" Height="30" HorizontalAlignment="Center" />
             <ListView x:Name="InfoLV" Grid.Row="2" Grid.ColumnSpan="3">

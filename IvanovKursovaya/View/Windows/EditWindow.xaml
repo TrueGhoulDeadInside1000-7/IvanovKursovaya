@@ -1,11 +1,11 @@
-﻿<Window x:Class="IvanovKursovaya.View.Windows.AddWindowTicket"
+﻿<Window x:Class="IvanovKursovaya.View.Windows.EditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IvanovKursovaya.View.Windows"
         mc:Ignorable="d"
-        Title="AddWindowTicket" Height="450" Width="800">
+        Title="EditWindow" Height="450" Width="800">
     <Border CornerRadius="30" Background="White" BorderBrush="Black" BorderThickness="3" Padding="10">
         <Grid x:Name="InfoGrid">
             <Grid.RowDefinitions>
@@ -35,19 +35,19 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <DatePicker SelectedDate=""  Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" x:Name="DataDP"/>
+            <TextBox Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" x:Name="NameTB"/>
             <TextBlock Text="Дата и время:" Grid.Row="2"/>
 
             <ComboBox  DisplayMemberPath="Title"
-                  SelectedValuePath="Id" SelectionChanged="TrainingTitle_SelectionChanged" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" x:Name="TrainingTitle"/>
+          SelectedValuePath="Id" SelectionChanged="TrainingTitle_SelectionChanged" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" x:Name="TrainingTitle"/>
             <TextBlock Text="Название тренировки:" TextWrapping="Wrap" Grid.Row="6" />
 
             <TextBlock Text="Имя клиента:" TextWrapping="Wrap" Grid.Row="10"/>
-            <ComboBox  DisplayMemberPath="Name"
-                  SelectedValuePath="Id" SelectionChanged="Client_SelectionChanged" Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="1" x:Name="Client"/>
-
             <ComboBox DisplayMemberPath="Name"
-                  SelectedValuePath="Id" SelectionChanged="DogHandler_SelectionChanged" Grid.Row="14" Grid.ColumnSpan="2" Grid.Column="1" x:Name="DogHandler"/>
+          SelectedValuePath="Id" SelectionChanged="Client_SelectionChanged" Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="1" x:Name="Client"/>
+
+            <ComboBox  DisplayMemberPath="Name"
+          SelectedValuePath="Id" SelectionChanged="DogHandler_SelectionChanged" Grid.Row="14" Grid.ColumnSpan="2" Grid.Column="1" x:Name="DogHandler"/>
             <TextBlock Text="Имя инструктора:" TextWrapping="Wrap" Grid.Row="14"/>
 
             <Button Content="Сохранить" Grid.Row="18" x:Name="SaveBtn" Click="SaveBtn_Click"/>

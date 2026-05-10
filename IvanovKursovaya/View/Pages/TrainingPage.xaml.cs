@@ -24,15 +24,24 @@ namespace IvanovKursovaya.View.Pages
     public partial class TrainingPage : Page
     {
         private List<Training> training = App.context.Training.ToList();
+        private Client currentClient;
+
         public TrainingPage(Client client, DogHandler dogHandler)
         {
             InitializeComponent();
             InfoLV.ItemsSource = training;
+            currentClient = client;
             CostFilter.Items.Insert(0, "Больше 2000");
             CostFilter.Items.Insert(1, "Меньше 2000");
             if (client != null)
             {
                 AddBtnTrainings.Visibility = Visibility.Collapsed;
+                EditBtnTrainings.Visibility = Visibility.Collapsed;
+                DeleteBtnTrainings.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                BookBtn.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -49,13 +58,13 @@ namespace IvanovKursovaya.View.Pages
 
         private void CostFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                decimal PriceM= 2000 ;
-            if(CostFilter.SelectedIndex == 0) 
+            decimal PriceM = 2000;
+            if (CostFilter.SelectedIndex == 0)
             {
-                
-                InfoLV.ItemsSource = 
-                    training.Where(u => 
-                    u.Price>=PriceM );
+
+                InfoLV.ItemsSource =
+                    training.Where(u =>
+                    u.Price >= PriceM);
             }
             if (CostFilter.SelectedIndex == 1)
             {
@@ -69,6 +78,91 @@ namespace IvanovKursovaya.View.Pages
         {
             AddWindow addWindow = new AddWindow();
             addWindow.ShowDialog();
+        }
+        private void EditBtnTrainings_Click(object sender, RoutedEventArgs e)
+        {
+            Training selectedTraining = InfoLV.SelectedItem as Training;
+
+            if (selectedTraining != null)
+            {
+                AddWindow addWindow = new AddWindow(selectedTraining);
+                addWindow.ShowDialog();
+
+                InfoLV.ItemsSource = null;
+                InfoLV.ItemsSource = App.context.Training.ToList();
+            }
+            else
+            {
+                MessageBox.Show("Выберите тренировку");
+            }
+        }
+        private void DeleteBtnTrainings_Click(object sender, RoutedEventArgs e)
+        {
+            Training selectedTraining = InfoLV.SelectedItem as Training;
+
+            if (selectedTraining != null)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Удалить тренировку?",
+                    "Подтверждение",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    App.context.Training.Remove(selectedTraining);
+
+                    App.context.SaveChanges();
+
+                    InfoLV.ItemsSource = null;
+                    InfoLV.ItemsSource = App.context.Training.ToList();
+
+                    MessageBox.Show("Тренировка удалена");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите тренировку");
+            }
+        }
+
+        private void BookBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Training selectedTraining = InfoLV.SelectedItem as Training;
+
+            if (selectedTraining == null)
+            {
+                MessageBox.Show("Выберите тренировку");
+                return;
+            }
+
+            // Проверка записи
+            Ticket existingTicket = App.context.Ticket.FirstOrDefault(u =>
+                u.Id_Client == currentClient.Id &&
+                u.Id_Training == selectedTraining.Id);
+
+            if (existingTicket != null)
+            {
+                MessageBox.Show("Вы уже записаны на эту тренировку");
+                return;
+            }
+
+            // Получаем первого кинолога
+            DogHandler dogHandler = App.context.DogHandler.FirstOrDefault();
+
+            Ticket ticket = new Ticket()
+            {
+                Id_Client = currentClient.Id,
+                Id_Training = selectedTraining.Id,
+                Id_DogHandler = dogHandler.Id,
+                DateTime = DateTime.Now.AddDays(1)
+            };
+
+            App.context.Ticket.Add(ticket);
+
+            App.context.SaveChanges();
+
+            MessageBox.Show("Запись успешно оформлена");
         }
     }
 }

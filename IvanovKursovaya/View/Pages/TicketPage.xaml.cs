@@ -31,7 +31,7 @@ namespace IvanovKursovaya.View.Pages
             if (client != null)
             { 
                 AddBtn.Visibility  = Visibility.Collapsed;
-                DelBtn.Visibility  = Visibility.Collapsed;
+                
                 ChangeBtn.Visibility  = Visibility.Collapsed;
                 var ticketclient = ticket.Where(u=>u.Id_Client == client.Id);
                 InfoLV.ItemsSource = ticketclient;
@@ -50,7 +50,31 @@ namespace IvanovKursovaya.View.Pages
 
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
+            Ticket selectedTicket = InfoLV.SelectedItem as Ticket;
 
+            if (selectedTicket != null)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Отменить запись?",
+                    "Подтверждение",
+                    MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    App.context.Ticket.Remove(selectedTicket);
+
+                    App.context.SaveChanges();
+
+                    InfoLV.ItemsSource = null;
+                    InfoLV.ItemsSource = App.context.Ticket.ToList();
+
+                    MessageBox.Show("Запись отменена");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите запись");
+            }
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
