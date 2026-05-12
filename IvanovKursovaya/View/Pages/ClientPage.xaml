@@ -28,7 +28,6 @@
                     <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
                     <GridViewColumn Header="Номер телефона" DisplayMemberBinding="{Binding Phone}"/>
                     <GridViewColumn Header="Электронная почта" DisplayMemberBinding="{Binding Email}"/>
-                    <GridViewColumn Header="Статус записи" DisplayMemberBinding="{Binding Recording_status}"/>
                 </GridView>
             </ListView.View>
         </ListView>
