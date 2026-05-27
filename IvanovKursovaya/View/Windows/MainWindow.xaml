@@ -5,57 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IvanovKursovaya.View.Windows"
         mc:Ignorable="d"
-Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+ Title="Главное окно"
+        Height="720"
+        Width="1280"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+
     <Grid>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="330" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!--Navigation&&NameLogo-->
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="5" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="5" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="5" />
-            </Grid.ColumnDefinitions>
 
-            <Image Source="C:\Users\Егор\source\repos\IvanovKursovaya\IvanovKursovaya\Images\кинолог.png" Grid.ColumnSpan="3" Margin="3,352,3,10" Grid.Row="3"/>
+        <!-- Меню -->
+        <Border Background="#222222">
 
-            <Grid Grid.Column="1" Grid.Row="3">
+            <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="5" />
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel>
-                    <Button Margin="0,0,0,5" Height="50" x:Name="MainBtn" Click="MainBtn_Click" Content="Главная" />
-                    <Button Margin="0,0,0,5" Height="50" x:Name="TicketBtn" Click="TicketBtn_Click" Content="Записи"/>
-                    <Button Margin="0,0,0,5" Height="50" x:Name="TrainingBtn" Click="TrainingBtn_Click" Content="Тарифы"/>
-                    <Button Margin="0,0,0,5" Height="50" x:Name="ClientsBtn" Click="ClientsBtn_Click" Content="Клиенты"/>
+                <Image Source="/Images/кинолог.png"
+                       Width="220"
+                       Height="220"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Row="1"
+                            Margin="20">
+
+                    <Button x:Name="MainBtn"
+                            Content="Главная"
+                            Height="55"
+                            Margin="0,0,0,15"
+                            FontSize="18"
+                            Background="#F26A1B"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="MainBtn_Click"/>
+
+                    <Button x:Name="TicketBtn"
+                            Content="Записи"
+                            Height="55"
+                            Margin="0,0,0,15"
+                            FontSize="18"
+                            Background="#F26A1B"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="TicketBtn_Click"/>
+
+                    <Button x:Name="TrainingBtn"
+                            Content="Тренировки"
+                            Height="55"
+                            Margin="0,0,0,15"
+                            FontSize="18"
+                            Background="#F26A1B"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="TrainingBtn_Click"/>
+
+                    <Button x:Name="ClientsBtn"
+                            Content="Клиенты"
+                            Height="55"
+                            Margin="0,0,0,15"
+                            FontSize="18"
+                            Background="#F26A1B"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="ClientsBtn_Click"/>
 
                 </StackPanel>
 
             </Grid>
 
+        </Border>
 
+        <!-- Контент -->
+        <Border Grid.Column="1"
+                Margin="20"
+                Background="White"
+                CornerRadius="20">
 
-        </Grid>
-
-        <!--MainMenu-->
-        <Grid Grid.Column="1">
-            <Frame Name="MainFrm"/>
-        </Grid>
+            <Frame x:Name="MainFrm"
+                   NavigationUIVisibility="Hidden"/>
+        </Border>
 
     </Grid>
 </Window>

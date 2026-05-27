@@ -8,19 +8,160 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Left">
-            <TextBlock Text="qwe" x:Name="LoginTB" Margin="5,0,0,5"/>
-            <TextBlock Text="qwe" x:Name="EmailTB" Margin="5,0,0,5"/>
-            <TextBlock Text="qwe" x:Name="PhoneTB" Margin="5,0,0,5"/>
-            <TextBlock Text="qwe" x:Name="NameTB" Margin="5,0,0,5"/>
-            <TextBlock Text="qwe" x:Name="SurenameTB" Margin="5,0,0,5"/>
-            <TextBlock Text="qwe" x:Name="PatronymicTB" Margin="5,0,0,5"/>
-        </StackPanel>
+    <Grid Background="#F5F5F5">
+
+        <Border Background="White"
+                CornerRadius="20"
+                Margin="30"
+                Padding="30">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Лого -->
+                <Image Source="/Images/кинолог.png"
+                       Width="220"
+                       Height="220"
+                       Stretch="Uniform"
+                       VerticalAlignment="Top"/>
+
+                <!-- Информация -->
+                <Grid Grid.Column="1"
+                      Margin="30,0,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Заголовок -->
+                    <TextBlock Text="Информация о пользователе"
+                               Grid.ColumnSpan="2"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"/>
+
+                    <!-- Логин -->
+                    <TextBlock Text="Логин:"
+                               Grid.Row="1"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
+                            Background="#F5F5F5"
+                            CornerRadius="10"
+                            Padding="15">
+
+                        <TextBlock x:Name="LoginTB"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <!-- Почта -->
+                    <TextBlock Text="Электронная почта:"
+                               Grid.Row="2"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <Border Grid.Row="2"
+                            Grid.Column="1"
+                            Background="#F5F5F5"
+                            CornerRadius="10"
+                            Padding="15">
+
+                        <TextBlock x:Name="EmailTB"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <!-- Телефон -->
+                    <TextBlock Text="Телефон:"
+                               Grid.Row="3"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <Border Grid.Row="3"
+                            Grid.Column="1"
+                            Background="#F5F5F5"
+                            CornerRadius="10"
+                            Padding="15">
+
+                        <TextBlock x:Name="PhoneTB"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <!-- Имя -->
+                    <TextBlock Text="Имя:"
+                               Grid.Row="4"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <Border Grid.Row="4"
+                            Grid.Column="1"
+                            Background="#F5F5F5"
+                            CornerRadius="10"
+                            Padding="15">
+
+                        <TextBlock x:Name="NameTB"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <!-- Фамилия -->
+                    <TextBlock Text="Фамилия:"
+                               Grid.Row="5"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <Border Grid.Row="5"
+                            Grid.Column="1"
+                            Background="#F5F5F5"
+                            CornerRadius="10"
+                            Padding="15">
+
+                        <TextBlock x:Name="SurenameTB"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <!-- Отчество -->
+                    <TextBlock Text="Отчество:"
+                               Grid.Row="6"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <Border Grid.Row="6"
+                            Grid.Column="1"
+                            Background="#F5F5F5"
+                            CornerRadius="10"
+                            Padding="15">
+
+                        <TextBlock x:Name="PatronymicTB"
+                                   FontSize="18"/>
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
     </Grid>
 </Page>

@@ -5,49 +5,135 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IvanovKursovaya.View.Windows"
         mc:Ignorable="d"
-        Title="AddWindow" Height="450" Width="800">
-    <Border CornerRadius="30" Background="White" BorderBrush="Black" BorderThickness="3" Padding="10">
-        <Grid x:Name="InfoGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
+        Title="Добавление тренировки"
+        Height="600"
+        Width="850"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F5F5F5">
 
-            <TextBox Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" x:Name="TitleTB"/>
-            <TextBlock Text="Название курса:" Grid.Row="2"/>
-            <TextBox Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" x:Name="DescriptionTB"/>
-            <TextBlock Text="Описание:" TextWrapping="Wrap" Grid.Row="6"/>
-            
-            <TextBox Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="1" x:Name="PriceTB"/>
-            <TextBlock Text="Стоимость:" TextWrapping="Wrap" Grid.Row="10"/>
-            
-     
+    <Grid>
 
+        <Border Margin="25"
+                Background="White"
+                CornerRadius="25">
 
-            <Button Content="Сохранить" Grid.Row="14" x:Name="SaveBtn" Click="SaveBtn_Click"/>
-            <Button Content="Закрыть" Grid.Row="14" Grid.Column="2" x:Name="CloseBtn" Click="CloseBtn_Click"/>
-        </Grid>
-    </Border>
+            <Grid Margin="30">
+
+                <!-- Колонки -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Строки -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок -->
+                <TextBlock Text="Добавление тренировки"
+                           Grid.ColumnSpan="3"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+                <!-- Название -->
+                <TextBlock Text="Название курса:"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           FontSize="16"
+                           VerticalAlignment="Center"/>
+
+                <TextBox x:Name="TitleTB"
+                         Grid.Row="2"
+                         Grid.Column="2"
+                         FontSize="16"
+                         Padding="10"
+                         BorderBrush="#F26A1B"
+                         BorderThickness="2"
+                         VerticalContentAlignment="Center"/>
+
+                <!-- Описание -->
+                <TextBlock Text="Описание:"
+                           Grid.Row="4"
+                           Grid.Column="0"
+                           FontSize="16"
+                           VerticalAlignment="Top"/>
+
+                <TextBox x:Name="DescriptionTB"
+                         Grid.Row="4"
+                         Grid.Column="2"
+                         FontSize="16"
+                         Padding="10"
+                         BorderBrush="#F26A1B"
+                         BorderThickness="2"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"/>
+
+                <!-- Стоимость -->
+                <TextBlock Text="Стоимость:"
+                           Grid.Row="6"
+                           Grid.Column="0"
+                           FontSize="16"
+                           VerticalAlignment="Center"/>
+
+                <TextBox x:Name="PriceTB"
+                         Grid.Row="6"
+                         Grid.Column="2"
+                         FontSize="16"
+                         Padding="10"
+                         BorderBrush="#F26A1B"
+                         BorderThickness="2"
+                         VerticalContentAlignment="Center"/>
+
+                <!-- Кнопки -->
+                <Grid Grid.Row="8"
+                      Grid.ColumnSpan="3">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Сохранить -->
+                    <Button x:Name="SaveBtn"
+                            Grid.Column="0"
+                            Content="Сохранить"
+                            Height="45"
+                            FontSize="16"
+                            Background="#F26A1B"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="SaveBtn_Click"/>
+
+                    <!-- Закрыть -->
+                    <Button x:Name="CloseBtn"
+                            Grid.Column="2"
+                            Content="Закрыть"
+                            Height="45"
+                            FontSize="16"
+                            Background="#222222"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="CloseBtn_Click"/>
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
 </Window>

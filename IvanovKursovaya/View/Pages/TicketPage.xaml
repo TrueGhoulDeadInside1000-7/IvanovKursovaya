@@ -8,32 +8,94 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TicketPage">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
+    <Grid Margin="15">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="InfoLV" Grid.Row="2" Grid.ColumnSpan="3">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Время занятия" DisplayMemberBinding="{Binding DateTime}"/>
-                    <GridViewColumn Header="Название курса тренировок" DisplayMemberBinding="{Binding Training.Title}"/>
-                    <GridViewColumn Header="Имя клиента" DisplayMemberBinding="{Binding Client.Name}"/>
-                    <GridViewColumn Header="Номер телефона клиента" DisplayMemberBinding="{Binding Client.Phone}"/>
-                    <GridViewColumn Header="Имя инструктора" DisplayMemberBinding="{Binding DogHandler.Name}"/>
-                    <GridViewColumn Header="Номер инструктора" DisplayMemberBinding="{Binding DogHandler.Phone}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button Click="ChangeBtn_Click" x:Name="ChangeBtn" Grid.Column="1" Content="Изменить"/>
-        <Button Click="AddBtn_Click" x:Name="AddBtn" Grid.Column="0" Content="Добавить"/>
-        <Button Click="DelBtn_Click" x:Name="DelBtn" Grid.Column="2" Content="Удалить"/>
+        <Border Background="White"
+                CornerRadius="15"
+                Padding="10">
+
+            <ListView x:Name="InfoLV">
+
+                <ListView.View>
+
+                    <GridView>
+
+                        <GridViewColumn Header="Дата"
+                                        DisplayMemberBinding="{Binding DateTime}"
+                                        Width="150"/>
+
+                        <GridViewColumn Header="Тренировка"
+                                        DisplayMemberBinding="{Binding Training.Title}"
+                                        Width="220"/>
+
+                        <GridViewColumn Header="Клиент"
+                                        DisplayMemberBinding="{Binding Client.Name}"
+                                        Width="150"/>
+
+                        <GridViewColumn Header="Телефон"
+                                        DisplayMemberBinding="{Binding Client.Phone}"
+                                        Width="170"/>
+
+                        <GridViewColumn Header="Инструктор"
+                                        DisplayMemberBinding="{Binding DogHandler.Name}"
+                                        Width="170"/>
+
+                    </GridView>
+
+                </ListView.View>
+
+            </ListView>
+
+        </Border>
+
+        <Grid Grid.Row="1"
+              Margin="0,10,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="AddBtn"
+                    Grid.Column="0"
+                    Content="Добавить"
+                    Height="45"
+                    Margin="0,0,10,0"
+                    Background="#F26A1B"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontSize="16"
+                    Click="AddBtn_Click"/>
+
+            <Button x:Name="ChangeBtn"
+                    Grid.Column="1"
+                    Content="Изменить"
+                    Height="45"
+                    Margin="10,0,10,0"
+                    Background="#222222"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontSize="16"
+                    Click="ChangeBtn_Click"/>
+
+            <Button x:Name="DelBtn"
+                    Grid.Column="2"
+                    Content="Удалить"
+                    Height="45"
+                    Margin="10,0,0,0"
+                    Background="#C62828"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontSize="16"
+                    Click="DelBtn_Click"/>
+
+        </Grid>
+
     </Grid>
 </Page>

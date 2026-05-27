@@ -136,33 +136,10 @@ namespace IvanovKursovaya.View.Pages
                 return;
             }
 
-            // Проверка записи
-            Ticket existingTicket = App.context.Ticket.FirstOrDefault(u =>
-                u.Id_Client == currentClient.Id &&
-                u.Id_Training == selectedTraining.Id);
+            BookingWindow bookingWindow =
+                new BookingWindow(currentClient, selectedTraining);
 
-            if (existingTicket != null)
-            {
-                MessageBox.Show("Вы уже записаны на эту тренировку");
-                return;
-            }
-
-            // Получаем первого кинолога
-            DogHandler dogHandler = App.context.DogHandler.FirstOrDefault();
-
-            Ticket ticket = new Ticket()
-            {
-                Id_Client = currentClient.Id,
-                Id_Training = selectedTraining.Id,
-                Id_DogHandler = dogHandler.Id,
-                DateTime = DateTime.Now.AddDays(1)
-            };
-
-            App.context.Ticket.Add(ticket);
-
-            App.context.SaveChanges();
-
-            MessageBox.Show("Запись успешно оформлена");
+            bookingWindow.ShowDialog();
         }
     }
 }

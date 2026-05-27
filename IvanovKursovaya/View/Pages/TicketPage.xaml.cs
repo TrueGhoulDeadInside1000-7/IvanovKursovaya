@@ -38,6 +38,7 @@ namespace IvanovKursovaya.View.Pages
             }
         }
 
+
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -64,6 +65,24 @@ namespace IvanovKursovaya.View.Pages
                     App.context.Ticket.Remove(selectedTicket);
 
                     App.context.SaveChanges();
+
+                    // Проверяем остались ли записи у клиента
+                    var clientTickets = App.context.Ticket
+                        .Where(u => u.Id_Client == selectedTicket.Id_Client)
+                        .ToList();
+
+                    if (clientTickets.Count == 0)
+                    {
+                        Client client = App.context.Client
+                            .FirstOrDefault(u => u.Id == selectedTicket.Id_Client);
+
+                        if (client != null)
+                        {
+                            client.Recording_status = false.ToString();
+
+                            App.context.SaveChanges();
+                        }
+                    }
 
                     InfoLV.ItemsSource = null;
                     InfoLV.ItemsSource = App.context.Ticket.ToList();

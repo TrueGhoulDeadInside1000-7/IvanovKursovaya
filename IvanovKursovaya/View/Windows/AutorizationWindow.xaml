@@ -5,39 +5,109 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IvanovKursovaya.View.Windows"
         mc:Ignorable="d"
-Title="AuthorizationWindow" Height="720" Width="1280" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid Margin="20">
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+Title="Авторизация"
+        Height="720"
+        Width="1280"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F5F5F5">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="300" />
-            </Grid.ColumnDefinitions>
+    <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="5" />
-            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Логин" Grid.Row="0" Grid.Column="0"/>
-            <TextBox x:Name="LoginTB" Grid.Row="0" Grid.Column="3"/>
-
-            <TextBlock Text="Пароль" Grid.Row="2"/>
-            <PasswordBox x:Name="PassPB" Grid.Row="2" Grid.Column="3"/>
-
-            <Button Click="LoginBtn_Click" x:Name="LoginBtn" Grid.Row="6" Grid.ColumnSpan="3" Content="Войти"/>
-
-            <Button Click="RegBtn_Click_1" x:Name="RegBtn" Grid.Row="8" Grid.ColumnSpan="3" Content="Регистрация"/>
+        <!-- Лого -->
+        <Grid Background="White">
+            <Image Source="/Images/кинолог.png"
+                   Width="450"
+                   Height="450"
+                   Stretch="Uniform"/>
         </Grid>
 
+        <!-- Форма -->
+        <Border Grid.Column="1"
+                Margin="40"
+                Background="White"
+                CornerRadius="25">
+
+            <Grid Margin="40">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Вход в систему"
+                           Grid.ColumnSpan="2"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="#222222"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Text="Логин"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"
+                           FontSize="18"/>
+
+                <TextBox x:Name="LoginTB"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         FontSize="18"
+                         Padding="12"
+                         BorderThickness="2"
+                         BorderBrush="#F26A1B"/>
+
+                <TextBlock Text="Пароль"
+                           Grid.Row="3"
+                           VerticalAlignment="Center"
+                           FontSize="18"/>
+
+                <PasswordBox x:Name="PassPB"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                             FontSize="18"
+                             Padding="12"
+                             BorderThickness="2"
+                             BorderBrush="#F26A1B"/>
+
+                <Button x:Name="LoginBtn"
+                        Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        Height="50"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Background="#F26A1B"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Content="Войти"
+                        Click="LoginBtn_Click"/>
+
+                <Button x:Name="RegBtn"
+                        Grid.Row="7"
+                        Grid.ColumnSpan="2"
+                        Height="50"
+                        FontSize="18"
+                        Background="#222222"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Content="Регистрация"
+                        Click="RegBtn_Click_1"/>
+
+            </Grid>
+        </Border>
     </Grid>
 </Window>

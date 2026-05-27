@@ -49,6 +49,7 @@ namespace IvanovKursovaya.View.Windows
                             Name = NameTB.Text,
                             Surename = SurenameTB.Text,
                             Patronymic = PatronymicTB.Text,
+                            Recording_status = false.ToString()
                         };
 
                         App.context.Client.Add(clientN);

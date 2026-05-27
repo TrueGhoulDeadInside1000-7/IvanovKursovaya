@@ -1,0 +1,89 @@
+﻿<Window x:Class="IvanovKursovaya.View.Windows.BookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IvanovKursovaya.View.Windows"
+        mc:Ignorable="d"
+        Title="Запись на тренировку"
+        Height="450"
+        Width="700"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F5F5F5">
+
+    <Grid>
+
+        <Border Margin="25"
+                Background="White"
+                CornerRadius="25">
+
+            <Grid Margin="30">
+
+                <!-- Колонки -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Строки -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок -->
+                <TextBlock Text="Запись на тренировку"
+                           Grid.ColumnSpan="3"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+                <!-- Дата -->
+                <TextBlock Text="Выберите дату:"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           FontSize="16"
+                           VerticalAlignment="Center"/>
+
+                <DatePicker x:Name="DatePickerTraining"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            FontSize="16"/>
+
+                <!-- Время -->
+                <TextBlock Text="Выберите время:"
+                           Grid.Row="4"
+                           Grid.Column="0"
+                           FontSize="16"
+                           VerticalAlignment="Center"/>
+
+                <ComboBox x:Name="TimeCB"
+                          Grid.Row="4"
+                          Grid.Column="2"
+                          FontSize="16"
+                          Padding="5"/>
+
+                <!-- Кнопка -->
+                <Button Content="Записаться"
+                        Grid.Row="6"
+                        Grid.ColumnSpan="3"
+                        Height="45"
+                        FontSize="16"
+                        Background="#F26A1B"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Click="BookBtn_Click"/>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+</Window>

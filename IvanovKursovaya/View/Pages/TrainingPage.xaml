@@ -7,54 +7,196 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TrainingPage">
-    <Grid>
+
+    <Grid Background="#F5F5F5"
+          Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Grid Grid.Row="0">
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="10" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
-            <TextBox x:Name="SearchTB"/>
-        <Button x:Name="EditBtnTrainings"
-        Click="EditBtnTrainings_Click"
-        Grid.Column="1"
-        Grid.Row="3"
-        Content="Изменить"
-        Width="150"
-        Height="30"
-        HorizontalAlignment="Center"/>
-        <Button x:Name="DeleteBtnTrainings"
-        Click="DeleteBtnTrainings_Click"
-        Grid.Column="2"
-        Grid.Row="3"
-        Content="Удалить"
-        Width="150"
-        Height="30"
-        HorizontalAlignment="Center"/>
-        <Button x:Name="BookBtn"
-        Click="BookBtn_Click"
-        Grid.Column="1"
-        Grid.Row="3"
-        Content="Записаться"
-        Width="150"
-        Height="30"
-        HorizontalAlignment="Center"/>
-            <Button x:Name="SearchBtn" Click="SearchBtn_Click" Grid.Column="1" Content="Найти" Width="100" Height="30" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-            <Button x:Name="AddBtnTrainings" Click="AddBtnTrainings_Click" Grid.Column="0" Grid.Row="4" Content="Добавить" Width="150" Height="30" HorizontalAlignment="Center" />
-            <ListView x:Name="InfoLV" Grid.Row="2" Grid.ColumnSpan="3">
+
+            <!-- Поиск -->
+            <TextBox x:Name="SearchTB"
+                     Grid.Column="0"
+                     FontSize="16"
+                     Padding="10"
+                     BorderThickness="2"
+                     BorderBrush="#F26A1B"
+                     VerticalContentAlignment="Center"/>
+
+            <!-- Кнопка поиска -->
+            <Button x:Name="SearchBtn"
+                    Grid.Column="2"
+                    Content="Найти"
+                    FontSize="16"
+                    Background="#F26A1B"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Click="SearchBtn_Click"/>
+
+            <!-- Фильтр -->
+            <ComboBox x:Name="CostFilter"
+                      Grid.Column="4"
+                      FontSize="16"
+                      Padding="5"
+                      SelectionChanged="CostFilter_SelectionChanged"/>
+
+        </Grid>
+
+        <!-- Таблица -->
+        <Border Grid.Row="2"
+                Background="White"
+                CornerRadius="18"
+                Padding="10">
+
+            <ListView x:Name="InfoLV">
+
                 <ListView.View>
+
                     <GridView>
-                        <GridViewColumn Header="Название курса тренировок" DisplayMemberBinding="{Binding Title}"/>
-                        <GridViewColumn Header="Описание курса тренировок" DisplayMemberBinding="{Binding Description}"/>
-                        <GridViewColumn Header="Цена за занятие" DisplayMemberBinding="{Binding Price}"/>
+
+                        <GridViewColumn Header="Название курса"
+                                        Width="250"
+                                        DisplayMemberBinding="{Binding Title}"/>
+
+                        <GridViewColumn Header="Описание"
+                                        Width="420"
+                                        DisplayMemberBinding="{Binding Description}"/>
+
+                        <GridViewColumn Header="Стоимость"
+                                        Width="150"
+                                        DisplayMemberBinding="{Binding Price}"/>
+
+                        <GridViewColumn Header="Статус записи"
+                                        Width="140">
+
+                            <GridViewColumn.CellTemplate>
+
+                                <DataTemplate>
+
+                                    <Border CornerRadius="8"
+                                            Padding="6"
+                                            HorizontalAlignment="Center"
+                                            Background="#EFEFEF">
+
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   FontWeight="SemiBold">
+
+                                            <TextBlock.Style>
+
+                                                <Style TargetType="TextBlock">
+
+                                                    <Setter Property="Text"
+                                                            Value="Неактивна"/>
+
+                                                    <Style.Triggers>
+
+                                                        <DataTrigger Binding="{Binding RecordingStatus}"
+                                                                     Value="True">
+
+                                                            <Setter Property="Text"
+                                                                    Value="Активна"/>
+
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+
+                                                </Style>
+
+                                            </TextBlock.Style>
+
+                                        </TextBlock>
+
+                                    </Border>
+
+                                </DataTemplate>
+
+                            </GridViewColumn.CellTemplate>
+
+                        </GridViewColumn>
+
                     </GridView>
+
                 </ListView.View>
+
             </ListView>
-        <ComboBox Grid.Column="3" Name="CostFilter" SelectionChanged="CostFilter_SelectionChanged"/>
+
+        </Border>
+
+        <!-- Нижние кнопки -->
+        <Grid Grid.Row="3"
+              Margin="0,10,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Добавить -->
+            <Button x:Name="AddBtnTrainings"
+            Grid.Column="0"
+            Content="Добавить"
+            Height="45"
+            Margin="0,0,10,0"
+            Background="#F26A1B"
+            Foreground="White"
+            BorderThickness="0"
+            FontSize="16"
+            Click="AddBtnTrainings_Click"/>
+
+            <!-- Изменить -->
+            <Button x:Name="EditBtnTrainings"
+            Grid.Column="1"
+            Content="Изменить"
+            Height="45"
+            Margin="10,0,10,0"
+            Background="#222222"
+            Foreground="White"
+            BorderThickness="0"
+            FontSize="16"
+            Click="EditBtnTrainings_Click"/>
+
+            <!-- Удалить -->
+            <Button x:Name="DeleteBtnTrainings"
+            Grid.Column="2"
+            Content="Удалить"
+            Height="45"
+            Margin="10,0,10,0"
+            Background="#C62828"
+            Foreground="White"
+            BorderThickness="0"
+            FontSize="16"
+            Click="DeleteBtnTrainings_Click"/>
+
+            <!-- Записаться -->
+            <Button x:Name="BookBtn"
+            Grid.Column="3"
+            Content="Записаться"
+            Height="45"
+            Margin="10,0,0,0"
+            Background="#444444"
+            Foreground="White"
+            BorderThickness="0"
+            FontSize="16"
+            Click="BookBtn_Click"/>
+
+        </Grid>
+
     </Grid>
+
 </Page>
