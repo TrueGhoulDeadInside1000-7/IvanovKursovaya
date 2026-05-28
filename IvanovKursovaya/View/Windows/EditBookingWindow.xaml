@@ -1,12 +1,12 @@
-﻿<Window x:Class="IvanovKursovaya.View.Windows.AddWindowTicket"
+﻿<Window x:Class="IvanovKursovaya.View.Windows.EditBookingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IvanovKursovaya.View.Windows"
         mc:Ignorable="d"
-         Title="Добавление записи"
-        Height="700"
+        Title="Изменение записи"
+        Height="600"
         Width="850"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -29,31 +29,21 @@
 
                 <!-- Строки -->
                 <Grid.RowDefinitions>
-
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="20"/>
-
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="20"/>
-
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="20"/>
-
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="20"/>
-
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="20"/>
-
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="35"/>
-
                     <RowDefinition Height="50"/>
-
                 </Grid.RowDefinitions>
 
                 <!-- Заголовок -->
-                <TextBlock Text="Добавление записи"
+                <TextBlock Text="Изменение записи"
                            Grid.ColumnSpan="3"
                            FontSize="28"
                            FontWeight="Bold"
@@ -71,28 +61,15 @@
                             Grid.Column="2"
                             FontSize="16"/>
 
-                <!-- Время -->
-                <TextBlock Text="Время:"
+                <!-- Тренировка -->
+                <TextBlock Text="Название тренировки:"
                            Grid.Row="4"
                            Grid.Column="0"
                            FontSize="16"
                            VerticalAlignment="Center"/>
 
-                <ComboBox x:Name="TimeCB"
-                          Grid.Row="4"
-                          Grid.Column="2"
-                          FontSize="16"
-                          Padding="5"/>
-
-                <!-- Тренировка -->
-                <TextBlock Text="Название тренировки:"
-                           Grid.Row="6"
-                           Grid.Column="0"
-                           FontSize="16"
-                           VerticalAlignment="Center"/>
-
                 <ComboBox x:Name="TrainingTitle"
-                          Grid.Row="6"
+                          Grid.Row="4"
                           Grid.Column="2"
                           FontSize="16"
                           Padding="5"
@@ -102,13 +79,13 @@
 
                 <!-- Клиент -->
                 <TextBlock Text="Имя клиента:"
-                           Grid.Row="8"
+                           Grid.Row="6"
                            Grid.Column="0"
                            FontSize="16"
                            VerticalAlignment="Center"/>
 
                 <ComboBox x:Name="Client"
-                          Grid.Row="8"
+                          Grid.Row="6"
                           Grid.Column="2"
                           FontSize="16"
                           Padding="5"
@@ -118,13 +95,13 @@
 
                 <!-- Инструктор -->
                 <TextBlock Text="Имя инструктора:"
-                           Grid.Row="10"
+                           Grid.Row="8"
                            Grid.Column="0"
                            FontSize="16"
                            VerticalAlignment="Center"/>
 
                 <ComboBox x:Name="DogHandler"
-                          Grid.Row="10"
+                          Grid.Row="8"
                           Grid.Column="2"
                           FontSize="16"
                           Padding="5"
@@ -133,7 +110,7 @@
                           SelectionChanged="DogHandler_SelectionChanged"/>
 
                 <!-- Кнопки -->
-                <Grid Grid.Row="12"
+                <Grid Grid.Row="10"
                       Grid.ColumnSpan="3">
 
                     <Grid.ColumnDefinitions>

@@ -33,6 +33,8 @@ namespace IvanovKursovaya.View.Pages
             currentClient = client;
             CostFilter.Items.Insert(0, "Больше 2000");
             CostFilter.Items.Insert(1, "Меньше 2000");
+            CostFilter.Items.Insert(2, "Все");
+            CostFilter.SelectedIndex = 2;
             if (client != null)
             {
                 AddBtnTrainings.Visibility = Visibility.Collapsed;
@@ -72,12 +74,20 @@ namespace IvanovKursovaya.View.Pages
     training.Where(u =>
     u.Price <= PriceM);
             }
+            if (CostFilter.SelectedIndex == 2)
+            {
+                InfoLV.ItemsSource = training;
+            }
         }
 
         private void AddBtnTrainings_Click(object sender, RoutedEventArgs e)
         {
             AddWindow addWindow = new AddWindow();
-            addWindow.ShowDialog();
+            if (addWindow.ShowDialog() == true)
+            {
+                InfoLV.ItemsSource = null;
+                InfoLV.ItemsSource = App.context.Training.ToList();
+            }
         }
         private void EditBtnTrainings_Click(object sender, RoutedEventArgs e)
         {
@@ -140,6 +150,17 @@ namespace IvanovKursovaya.View.Pages
                 new BookingWindow(currentClient, selectedTraining);
 
             bookingWindow.ShowDialog();
+        }
+
+        private void SearchTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(SearchTB.Text))
+            {
+                InfoLV.ItemsSource =
+                    training.Where(u =>
+                    u.Title.ToLower().Contains(SearchTB.Text.ToLower())
+                    || u.Description.ToLower().Contains(SearchTB.Text.ToLower()));
+            }
         }
     }
 }

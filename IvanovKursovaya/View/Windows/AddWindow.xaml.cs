@@ -79,8 +79,9 @@ namespace IvanovKursovaya.View.Windows
                         App.context.SaveChanges();
 
                         MessageBox.Show("Курс успешно добавлен");
+                        DialogResult = true;
+                        this.Close();
 
-                        Close();
                     }
                 }
 
@@ -95,7 +96,7 @@ namespace IvanovKursovaya.View.Windows
 
                     MessageBox.Show("Данные успешно изменены");
 
-                    Close();
+                    this.Close();
                 }
             }
         }

@@ -34,19 +34,14 @@
                      Grid.Column="0"
                      FontSize="16"
                      Padding="10"
+                     Grid.ColumnSpan="3"
                      BorderThickness="2"
                      BorderBrush="#F26A1B"
-                     VerticalContentAlignment="Center"/>
+                     VerticalContentAlignment="Center"
+                     TextChanged="SearchTB_TextChanged"/>
 
             <!-- Кнопка поиска -->
-            <Button x:Name="SearchBtn"
-                    Grid.Column="2"
-                    Content="Найти"
-                    FontSize="16"
-                    Background="#F26A1B"
-                    Foreground="White"
-                    BorderThickness="0"
-                    Click="SearchBtn_Click"/>
+            
 
             <!-- Фильтр -->
             <ComboBox x:Name="CostFilter"
@@ -80,55 +75,6 @@
                         <GridViewColumn Header="Стоимость"
                                         Width="150"
                                         DisplayMemberBinding="{Binding Price}"/>
-
-                        <GridViewColumn Header="Статус записи"
-                                        Width="140">
-
-                            <GridViewColumn.CellTemplate>
-
-                                <DataTemplate>
-
-                                    <Border CornerRadius="8"
-                                            Padding="6"
-                                            HorizontalAlignment="Center"
-                                            Background="#EFEFEF">
-
-                                        <TextBlock HorizontalAlignment="Center"
-                                                   FontWeight="SemiBold">
-
-                                            <TextBlock.Style>
-
-                                                <Style TargetType="TextBlock">
-
-                                                    <Setter Property="Text"
-                                                            Value="Неактивна"/>
-
-                                                    <Style.Triggers>
-
-                                                        <DataTrigger Binding="{Binding RecordingStatus}"
-                                                                     Value="True">
-
-                                                            <Setter Property="Text"
-                                                                    Value="Активна"/>
-
-                                                        </DataTrigger>
-
-                                                    </Style.Triggers>
-
-                                                </Style>
-
-                                            </TextBlock.Style>
-
-                                        </TextBlock>
-
-                                    </Border>
-
-                                </DataTemplate>
-
-                            </GridViewColumn.CellTemplate>
-
-                        </GridViewColumn>
-
                     </GridView>
 
                 </ListView.View>

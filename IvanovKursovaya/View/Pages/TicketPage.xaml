@@ -26,7 +26,7 @@
                     <GridView>
 
                         <GridViewColumn Header="Дата"
-                                        DisplayMemberBinding="{Binding DateTime}"
+                                        DisplayMemberBinding="{Binding DateTime, StringFormat=dd.MM.yyyy HH:mm}"
                                         Width="150"/>
 
                         <GridViewColumn Header="Тренировка"

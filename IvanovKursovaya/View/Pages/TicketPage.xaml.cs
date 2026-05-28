@@ -46,7 +46,22 @@ namespace IvanovKursovaya.View.Pages
 
         private void ChangeBtn_Click(object sender, RoutedEventArgs e)
         {
+            Ticket selectedTicket = InfoLV.SelectedItem as Ticket;
 
+            if (selectedTicket != null)
+            {
+                EditBookingWindow editWindow =
+                    new EditBookingWindow(selectedTicket);
+
+                editWindow.ShowDialog();
+
+                InfoLV.ItemsSource = null;
+                InfoLV.ItemsSource = App.context.Ticket.ToList();
+            }
+            else
+            {
+                MessageBox.Show("Выберите запись");
+            }
         }
 
         private void DelBtn_Click(object sender, RoutedEventArgs e)
@@ -99,7 +114,14 @@ namespace IvanovKursovaya.View.Pages
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             AddWindowTicket addWindowTicket = new AddWindowTicket();
-            addWindowTicket.ShowDialog();
+            if (addWindowTicket.ShowDialog() == true)
+            {
+                
+                
+                    InfoLV.ItemsSource = null;
+                    InfoLV.ItemsSource = App.context.Ticket.ToList();
+
+            }
         }
     }
 }
