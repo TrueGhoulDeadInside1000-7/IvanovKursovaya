@@ -22,23 +22,58 @@ namespace IvanovKursovaya.View.Pages
     /// </summary>
     public partial class TicketPage : Page
     {
-        private List<Ticket> ticket = App.context.Ticket.ToList();
+        private List<Ticket> tickets;
+        private Client thisClient;
+        private DogHandler thisDogHandler;
 
         public TicketPage(Client client, DogHandler dogHandler)
         {
             InitializeComponent();
-            InfoLV.ItemsSource = ticket;
-            if (client != null)
-            { 
-                AddBtn.Visibility  = Visibility.Collapsed;
-                
-                ChangeBtn.Visibility  = Visibility.Collapsed;
-                var ticketclient = ticket.Where(u=>u.Id_Client == client.Id);
-                InfoLV.ItemsSource = ticketclient;
+
+            thisClient = client;
+            thisDogHandler = dogHandler;
+
+            if (thisClient != null)
+            {
+                // Страницу открыл клиент
+                AddBtn.Visibility = Visibility.Collapsed;
+                ChangeBtn.Visibility = Visibility.Collapsed;
             }
+            else if (thisDogHandler != null)
+            {
+                // Страницу открыл кинолог
+                AddBtn.Visibility = Visibility.Visible;
+                ChangeBtn.Visibility = Visibility.Visible;
+            }
+
+            loadTickets();
         }
 
+        private void loadTickets()
+        {
+            if (thisClient != null)
+            {
+                // Клиент видит только свои записи
+                tickets = App.context.Ticket
+                    .Where(x => x.Id_Client == thisClient.Id)
+                    .OrderByDescending(x => x.DateTime)
+                    .ToList();
+            }
+            else if (thisDogHandler != null)
+            {
+                // Кинолог видит весь список записей
+                tickets = App.context.Ticket
+                    .OrderByDescending(x => x.DateTime)
+                    .ToList();
+            }
+            else
+            {
+                tickets = new List<Ticket>();
+            }
 
+            InfoLV.ItemsSource = null;
+            InfoLV.ItemsSource = tickets;
+        }
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -55,8 +90,7 @@ namespace IvanovKursovaya.View.Pages
 
                 editWindow.ShowDialog();
 
-                InfoLV.ItemsSource = null;
-                InfoLV.ItemsSource = App.context.Ticket.ToList();
+                loadTickets();
             }
             else
             {
@@ -99,8 +133,7 @@ namespace IvanovKursovaya.View.Pages
                         }
                     }
 
-                    InfoLV.ItemsSource = null;
-                    InfoLV.ItemsSource = App.context.Ticket.ToList();
+                    loadTickets();
 
                     MessageBox.Show("Запись отменена");
                 }
@@ -118,8 +151,7 @@ namespace IvanovKursovaya.View.Pages
             {
                 
                 
-                    InfoLV.ItemsSource = null;
-                    InfoLV.ItemsSource = App.context.Ticket.ToList();
+                   loadTickets();
 
             }
         }

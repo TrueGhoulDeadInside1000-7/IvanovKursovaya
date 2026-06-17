@@ -41,7 +41,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Заголовок -->
-                <TextBlock Text="Добавление тренировки"
+                <TextBlock Text="Добавление/изменение тренировки"
                            Grid.ColumnSpan="3"
                            FontSize="28"
                            FontWeight="Bold"
